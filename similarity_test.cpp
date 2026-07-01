@@ -14,7 +14,7 @@ TEST_F(SimilerityFixture, SameStringLengthCase) {
 	EXPECT_EQ(expect, checker.checkLength("ABC", "ABC"));
 }
 
-TEST_F(SimilerityFixture, TwiceStringLengthCase) {
+TEST_F(SimilerityFixture, NoPartialPointCase) {
 	expect = 0;
 	EXPECT_EQ(expect, checker.checkLength("ABCABC", "ABC"));
 }
