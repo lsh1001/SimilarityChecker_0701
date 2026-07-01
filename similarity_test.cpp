@@ -3,6 +3,23 @@
 
 using namespace testing;
 
-TEST(SimilarityChecker, TestCase1) {
+class SimilerityFixture : public Test {
+public:
+	Similarity checker;
+	int expect;
+};
 
+TEST_F(SimilerityFixture, SameStringLengthCase) {
+	expect = 60;
+	EXPECT_EQ(expect, checker.checkLength("ABC", "ABC"));
+}
+
+TEST_F(SimilerityFixture, NoPartialPointCase) {
+	expect = 0;
+	EXPECT_EQ(expect, checker.checkLength("ABCABC", "ABC"));
+}
+
+TEST_F(SimilerityFixture, PartialPointCase) {
+	expect = 20;
+	EXPECT_EQ(expect, checker.checkLength("ABCAB", "ABC"));
 }
