@@ -6,28 +6,33 @@ using std::string;
 class Similarity {
 public:
 	int checkLength(string str1, string str2) {
-		if (isSameStringSize(str1, str2))
+		int strlen1 = str1.size();
+		int strlen2 = str2.size();
+
+		if (isSameStringSize(strlen1, strlen2))
 			return 60;
-		if (!isPartialPointCase(str1, str2))
+		if (!isPartialPointCase(strlen1, strlen2))
 			return 0;
-		return partialPointCase(str1, str2);
+		return partialPointCase(strlen1, strlen2);
 	}
 
 private:
-	bool isSameStringSize(string& str1, string& str2)
-	{
-		return str1.size() == str2.size();
+	bool isSameStringSize(int strlen1, int strlen2) {
+		return strlen1 == strlen2;
 	}
 
-	bool isPartialPointCase(string& str1, string& str2)
-	{
-		return ((str1.size() < str2.size() * 2) && (str2.size() < str1.size() * 2));
+	bool isPartialPointCase(int strlen1, int strlen2) {
+		return ((strlen1 < strlen2 * 2) && (strlen2 < strlen1 * 2));
 	}
 
-	int partialPointCase(std::string& str1, std::string& str2)
-	{
-		if (str1.size() > str2.size())
-			return 60 - (60 * (str1.size() - str2.size()) / str2.size());
-		return 60 - (60 * (str2.size() - str1.size()) / str1.size());
+	int partialPointCase(int strlen1, int strlen2) {
+		if (strlen1 > strlen2)
+			return calculatePoint(strlen1, strlen2);
+		return calculatePoint(strlen2, strlen1);
 	}
+
+	int calculatePoint(int strlen1, int strlen2) {
+		return 60 - (60 * abs(strlen1 - strlen2) / strlen2);
+	}
+
 };
