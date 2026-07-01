@@ -18,3 +18,8 @@ TEST_F(SimilerityFixture, NoPartialPointCase) {
 	expect = 0;
 	EXPECT_EQ(expect, checker.checkLength("ABCABC", "ABC"));
 }
+
+TEST_F(SimilerityFixture, PartialPointCase) {
+	expect = 20;
+	EXPECT_EQ(expect, checker.checkLength("ABCAB", "ABC"));
+}
