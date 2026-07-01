@@ -3,10 +3,13 @@
 
 using namespace testing;
 
-TEST(SimilarityChecker, SameStringCase) {
+class SimilerityFixture : public Test {
+public:
 	Similarity checker;
-	int expect = 60;
-	int actual = checker.checkLength("ABC","ABC");
+	int expect;
+};
 
-	EXPECT_EQ(expect, actual);
+TEST_F(SimilerityFixture, SameStringLengthCase) {
+	expect = 60;
+	EXPECT_EQ(expect, checker.checkLength("ABC", "ABC"));
 }
