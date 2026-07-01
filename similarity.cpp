@@ -10,7 +10,7 @@ public:
 			return 60;
 		if (!isPartialPointCase(str1, str2))
 			return 0;
-		return 20;
+		return partialPointCase(str1, str2);
 	}
 
 private:
@@ -22,5 +22,12 @@ private:
 	bool isPartialPointCase(string& str1, string& str2)
 	{
 		return ((str1.size() < str2.size() * 2) && (str2.size() < str1.size() * 2));
+	}
+
+	int partialPointCase(std::string& str1, std::string& str2)
+	{
+		if (str1.size() > str2.size())
+			return 60 - (60 * (str1.size() - str2.size()) / str2.size());
+		return 60 - (60 * (str2.size() - str1.size()) / str1.size());
 	}
 };
