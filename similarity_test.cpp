@@ -13,3 +13,8 @@ TEST_F(SimilerityFixture, SameStringLengthCase) {
 	expect = 60;
 	EXPECT_EQ(expect, checker.checkLength("ABC", "ABC"));
 }
+
+TEST_F(SimilerityFixture, TwiceStringLengthCase) {
+	expect = 0;
+	EXPECT_EQ(expect, checker.checkLength("ABCABC", "ABC"));
+}
